@@ -1,0 +1,166 @@
+[
+	{
+		"title": "Spaghetti Bolognese",
+		"ingredients": [
+			"200g spaghetti",
+			"300g ground beef",
+			"1 onion, chopped",
+			"2 cloves garlic, minced",
+			"1 can of tomatoes",
+			"1 tablespoon tomato paste",
+			"1 teaspoon dried oregano",
+			"1 teaspoon basil",
+			"Salt and pepper to taste",
+			"Olive oil"
+		],
+		"instructions": "Heat olive oil in a pan, sauté onion and garlic until soft. Add ground beef and cook until browned. Add tomatoes, tomato paste, oregano, and basil. Simmer for 30 minutes. Serve with spaghetti.",
+		"category": "Pasta",
+		"author": "Chef John",
+		"time": "45 minutes",
+		"difficulty": "Medium"
+	},
+	{
+		"title": "Chicken Caesar Salad",
+		"ingredients": [
+			"2 chicken breasts",
+			"1 romaine lettuce head, chopped",
+			"50g parmesan cheese, grated",
+			"1 cup croutons",
+			"Caesar dressing",
+			"Salt and pepper to taste"
+		],
+		"instructions": "Grill or pan-fry chicken breasts until fully cooked. Slice them. In a large bowl, mix lettuce, croutons, and cheese. Toss with Caesar dressing and top with sliced chicken.",
+		"category": "Salad",
+		"author": "Chef Sarah",
+		"time": "25 minutes",
+		"difficulty": "Easy"
+	},
+	{
+		"title": "Vegetable Stir Fry",
+		"ingredients": [
+			"1 bell pepper, sliced",
+			"1 zucchini, sliced",
+			"1 carrot, julienned",
+			"100g mushrooms, sliced",
+			"2 tablespoons soy sauce",
+			"1 tablespoon sesame oil",
+			"1 teaspoon ginger, minced",
+			"Rice, to serve"
+		],
+		"instructions": "Heat sesame oil in a pan, sauté ginger, then add vegetables. Stir-fry for 5-7 minutes, adding soy sauce towards the end. Serve with rice.",
+		"category": "Vegetarian",
+		"author": "Chef Lee",
+		"time": "20 minutes",
+		"difficulty": "Easy"
+	},
+	{
+		"title": "Beef Tacos",
+		"ingredients": [
+			"500g ground beef",
+			"Taco shells",
+			"Lettuce, shredded",
+			"Tomatoes, chopped",
+			"Cheese, shredded",
+			"Sour cream",
+			"Salsa"
+		],
+		"instructions": "Cook ground beef in a pan, season with taco seasoning. Fill taco shells with beef, then top with lettuce, tomatoes, cheese, sour cream, and salsa.",
+		"category": "Mexican",
+		"author": "Chef Maria",
+		"time": "30 minutes",
+		"difficulty": "Medium"
+	},
+	{
+		"title": "Margherita Pizza",
+		"ingredients": [
+			"1 pizza dough",
+			"200g tomato sauce",
+			"200g mozzarella cheese",
+			"Fresh basil leaves",
+			"Olive oil"
+		],
+		"instructions": "Preheat oven to 220°C. Roll out pizza dough, spread tomato sauce, top with mozzarella cheese and basil. Bake for 10-12 minutes. Drizzle with olive oil before serving.",
+		"category": "Italian",
+		"author": "Chef Luca",
+		"time": "20 minutes",
+		"difficulty": "Medium"
+	},
+	{
+		"title": "Chicken Alfredo Pasta",
+		"ingredients": [
+			"200g fettuccine",
+			"2 chicken breasts, grilled",
+			"1 cup heavy cream",
+			"1 cup parmesan cheese, grated",
+			"2 cloves garlic, minced",
+			"Salt and pepper to taste"
+		],
+		"instructions": "Cook fettuccine according to package instructions. In a pan, sauté garlic, add cream and parmesan, then stir in grilled chicken. Toss with pasta.",
+		"category": "Pasta",
+		"author": "Chef James",
+		"time": "30 minutes",
+		"difficulty": "Medium"
+	},
+	{
+		"title": "Beef Wellington",
+		"ingredients": [
+			"1kg beef tenderloin",
+			"200g mushrooms, finely chopped",
+			"1 tablespoon dijon mustard",
+			"Puff pastry",
+			"Egg wash"
+		],
+		"instructions": "Sear beef tenderloin and coat with mustard. Sauté mushrooms and wrap the beef in mushrooms and puff pastry. Bake at 200°C for 30-35 minutes.",
+		"category": "Main Course",
+		"author": "Chef William",
+		"time": "1 hour 30 minutes",
+		"difficulty": "High"
+	},
+	{
+		"title": "Salmon Fillet with Lemon Butter",
+		"ingredients": [
+			"2 salmon fillets",
+			"2 tablespoons butter",
+			"1 lemon, sliced",
+			"1 tablespoon garlic, minced",
+			"Salt and pepper to taste"
+		],
+		"instructions": "Melt butter in a pan, add garlic, then place salmon fillets in the pan. Cook for 5-6 minutes on each side. Serve with lemon slices.",
+		"category": "Seafood",
+		"author": "Chef Amy",
+		"time": "15 minutes",
+		"difficulty": "Easy"
+	},
+	{
+		"title": "Chocolate Cake",
+		"ingredients": [
+			"200g flour",
+			"200g sugar",
+			"50g cocoa powder",
+			"3 eggs",
+			"1 cup milk",
+			"1 teaspoon vanilla extract",
+			"1 teaspoon baking powder"
+		],
+		"instructions": "Preheat oven to 180°C. Mix all ingredients, pour into a greased cake pan, and bake for 25-30 minutes.",
+		"category": "Dessert",
+		"author": "Chef Emma",
+		"time": "45 minutes",
+		"difficulty": "Medium"
+	},
+	{
+		"title": "Egg Salad Sandwich",
+		"ingredients": [
+			"4 hard-boiled eggs, chopped",
+			"2 tablespoons mayonnaise",
+			"1 teaspoon mustard",
+			"2 slices bread",
+			"Lettuce"
+		],
+		"instructions": "Mix eggs, mayonnaise, and mustard. Spread on bread and add lettuce. Serve as a sandwich.",
+		"category": "Sandwich",
+		"author": "Chef Sam",
+		"time": "10 minutes",
+		"difficulty": "Easy"
+	}
+]
