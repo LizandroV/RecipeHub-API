@@ -9,7 +9,7 @@ export function generateToken(email) {
 
 export function validateToken(req, res, next) {
 	const token = req.header('Authorization')?.replace('Bearer ', '');
-	console.log(token);
+	// console.log(token);
 
 	if (!token) {
 		return res.status(401).json({ error: 'Token Required' });
@@ -17,7 +17,7 @@ export function validateToken(req, res, next) {
 
 	try {
 		const dataToken = jsonwebtoken.verify(token, process.env.JWT_TOKEN_SECRET);
-		console.log(dataToken.email);
+		// console.log(dataToken.email);
 		// return res.status(200).json({ msg: 'Token Valid'})
 		req.emailConnected = dataToken.email;
 		next();

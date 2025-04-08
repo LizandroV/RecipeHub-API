@@ -2,9 +2,6 @@ import mongoose from 'mongoose';
 
 const isValidName = (name) => name.length >= 2 && name.length <= 50;
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-const isValidPassword = (password) =>
-	password.length >= 8 && password.length <= 20;
-
 // name, email, password, favorites
 const usersSchema = new mongoose.Schema(
 	{
@@ -32,10 +29,6 @@ const usersSchema = new mongoose.Schema(
 			type: String,
 			required: [true, 'Password is required'],
 			trim: true,
-			validate: {
-				validator: isValidPassword,
-				message: 'Password must be between 8 and 20 characters',
-			},
 		},
 		favorites: {
 			type: [String],

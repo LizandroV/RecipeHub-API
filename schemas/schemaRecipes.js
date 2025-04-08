@@ -33,7 +33,8 @@ const recipesSchema = new mongoose.Schema(
 					'Salad',
 					'Other',
 				],
-				message: 'Invalid category.',
+				message:
+					'Invalid category(Dessert, Appetizer, Main Course, Beverage, Salad, Other).',
 			},
 		},
 		author: {

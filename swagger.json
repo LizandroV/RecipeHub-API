@@ -1,60 +1,73 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Recipe & User API",
-    "description": "API for managing users and recipes.",
+    "title": "RecipeHub API",
+    "description": "API for managing users and recipes in RecipeHub.",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "http://localhost:5000",
+      "url": "https://recipehub-api-jxvk.onrender.com",
+      "description": "Production Server"
+    },
+    {
+      "url": "http://localhost:8080",
       "description": "Development Server"
     }
   ],
   "tags": [
     {
       "name": "Users",
-      "description": "Operations related to user management"
+      "description": "Operations related to user accounts"
     },
     {
       "name": "Recipes",
-      "description": "Operations related to recipe management"
+      "description": "Operations related to managing recipes"
     }
   ],
   "paths": {
     "/users/register": {
       "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Register a new user",
         "description": "",
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "User registered successfully"
           },
           "409": {
-            "description": "Conflict"
+            "description": "The user already exists"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error"
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "name": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "john"
                   },
                   "email": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "johndoe@example.com"
                   },
                   "password": {
-                    "example": "any"
-                  },
-                  "favorites": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "SecurePass123"
                   }
-                }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
               }
             }
           }
@@ -63,31 +76,50 @@
     },
     "/users/login": {
       "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Login an existing user",
         "description": "",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "example": {
+                  "msg": "Login Successful",
+                  "token": "eyJhbGciOi..."
+                }
+              }
+            }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Invalid credentials"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error"
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "email": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "johndoe@example.com"
                   },
                   "password": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "SecurePass123"
                   }
-                }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
               }
             }
           }
@@ -96,6 +128,10 @@
     },
     "/users/profile": {
       "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user profile data",
         "description": "",
         "parameters": [
           {
@@ -108,20 +144,29 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "User profile retrieved successfully"
           },
           "401": {
             "description": "Unauthorized"
           },
           "404": {
-            "description": "Not Found"
+            "description": "User not found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update user profile",
         "description": "",
         "parameters": [
           {
@@ -134,20 +179,60 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Profile updated successfully"
+          },
+          "400": {
+            "description": "Invalid password format"
           },
           "401": {
             "description": "Unauthorized"
           },
           "404": {
-            "description": "Not Found"
+            "description": "User not found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "john"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "johndoe@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "SecurePass123"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
           }
         }
       },
       "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete user profile",
         "description": "",
         "parameters": [
           {
@@ -160,34 +245,47 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "User deleted successfully"
           },
           "401": {
             "description": "Unauthorized"
           },
           "404": {
-            "description": "Not Found"
+            "description": "User not found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/recipes/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Recipes"
+        ],
+        "summary": "Get all recipes",
+        "description": "Retrieves the complete collection of delicious recipes from the archives.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "List of all recipes retrieved successfully"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error while fetching recipes"
           }
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Recipes"
+        ],
+        "summary": "Create a new recipe",
+        "description": "Crafts a brand new recipe with the given data.",
         "parameters": [
           {
             "name": "Authorization",
@@ -199,20 +297,39 @@
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Recipe created successfully"
           },
           "401": {
             "description": "Unauthorized"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error while creating the recipe"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recipe"
+              }
+            }
           }
         }
       }
     },
     "/recipes/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Recipes"
+        ],
+        "summary": "Get a single recipe by ID",
+        "description": "Fetches the details of a single recipe, chosen by its ID — a culinary gem.",
         "parameters": [
           {
             "name": "id",
@@ -220,20 +337,25 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "ID of the recipe to retrieve"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Recipe retrieved successfully"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error while retrieving the recipe"
           }
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Recipes"
+        ],
+        "summary": "Update a recipe by ID",
+        "description": "Finds a recipe by ID and   it with the provided data.",
         "parameters": [
           {
             "name": "id",
@@ -241,7 +363,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "ID of the recipe to update"
           },
           {
             "name": "Authorization",
@@ -253,18 +376,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Recipe updated successfully"
           },
           "401": {
             "description": "Unauthorized"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error while updating the recipe"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recipe"
+              }
+            }
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Recipes"
+        ],
+        "summary": "Delete a recipe by ID",
+        "description": "Removes a recipe entirely from the collection, using its unique ID.",
         "parameters": [
           {
             "name": "id",
@@ -272,7 +414,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "ID of the recipe to delete"
           },
           {
             "name": "Authorization",
@@ -284,21 +427,26 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "Recipe deleted successfully (no content)"
           },
           "401": {
             "description": "Unauthorized"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error while deleting the recipe"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     }
   },
   "components": {
     "securitySchemes": {
-      "BearerAuth": {
+      "bearerAuth": {
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "JWT"
@@ -321,10 +469,6 @@
                   "type": {
                     "type": "string",
                     "example": "string"
-                  },
-                  "example": {
-                    "type": "string",
-                    "example": "John Doe"
                   }
                 }
               },
@@ -334,10 +478,6 @@
                   "type": {
                     "type": "string",
                     "example": "string"
-                  },
-                  "example": {
-                    "type": "string",
-                    "example": "john.doe@example.com"
                   }
                 }
               },
@@ -347,10 +487,24 @@
                   "type": {
                     "type": "string",
                     "example": "string"
-                  },
-                  "example": {
+                  }
+                }
+              },
+              "favorites": {
+                "type": "object",
+                "properties": {
+                  "type": {
                     "type": "string",
-                    "example": "SecurePassword123"
+                    "example": "array"
+                  },
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -365,6 +519,33 @@
             ],
             "items": {
               "type": "string"
+            }
+          },
+          "example": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example": "Jane Doe"
+              },
+              "email": {
+                "type": "string",
+                "example": "jane@example.com"
+              },
+              "password": {
+                "type": "string",
+                "example": "StrongPassword123"
+              },
+              "favorites": {
+                "type": "array",
+                "example": [
+                  "recipe123",
+                  "recipe456"
+                ],
+                "items": {
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -385,10 +566,6 @@
                   "type": {
                     "type": "string",
                     "example": "string"
-                  },
-                  "example": {
-                    "type": "string",
-                    "example": "Pasta Primavera"
                   }
                 }
               },
@@ -397,27 +574,7 @@
                 "properties": {
                   "type": {
                     "type": "string",
-                    "example": "array"
-                  },
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string",
-                        "example": "string"
-                      }
-                    }
-                  },
-                  "example": {
-                    "type": "array",
-                    "example": [
-                      "Pasta",
-                      "Tomato",
-                      "Basil"
-                    ],
-                    "items": {
-                      "type": "string"
-                    }
+                    "example": "string"
                   }
                 }
               },
@@ -427,10 +584,6 @@
                   "type": {
                     "type": "string",
                     "example": "string"
-                  },
-                  "example": {
-                    "type": "string",
-                    "example": "Boil pasta, mix with sauce."
                   }
                 }
               },
@@ -441,9 +594,19 @@
                     "type": "string",
                     "example": "string"
                   },
-                  "example": {
-                    "type": "string",
-                    "example": "Italian"
+                  "enum": {
+                    "type": "array",
+                    "example": [
+                      "Dessert",
+                      "Appetizer",
+                      "Main Course",
+                      "Beverage",
+                      "Salad",
+                      "Other"
+                    ],
+                    "items": {
+                      "type": "string"
+                    }
                   }
                 }
               },
@@ -453,10 +616,6 @@
                   "type": {
                     "type": "string",
                     "example": "string"
-                  },
-                  "example": {
-                    "type": "string",
-                    "example": "Jane Doe"
                   }
                 }
               },
@@ -465,11 +624,7 @@
                 "properties": {
                   "type": {
                     "type": "string",
-                    "example": "integer"
-                  },
-                  "example": {
-                    "type": "number",
-                    "example": 30
+                    "example": "string"
                   }
                 }
               },
@@ -480,9 +635,16 @@
                     "type": "string",
                     "example": "string"
                   },
-                  "example": {
-                    "type": "string",
-                    "example": "Easy"
+                  "enum": {
+                    "type": "array",
+                    "example": [
+                      "Easy",
+                      "Medium",
+                      "Hard"
+                    ],
+                    "items": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -493,25 +655,53 @@
             "example": [
               "title",
               "ingredients",
-              "instructions"
+              "instructions",
+              "category",
+              "author",
+              "time",
+              "difficulty"
             ],
             "items": {
               "type": "string"
+            }
+          },
+          "example": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "example": "Spaghetti Carbonara"
+              },
+              "ingredients": {
+                "type": "string",
+                "example": "eggs, bacon, parmesan, pasta"
+              },
+              "instructions": {
+                "type": "string",
+                "example": "Boil pasta. Fry bacon. Mix everything with parmesan and eggs."
+              },
+              "category": {
+                "type": "string",
+                "example": "Main Course"
+              },
+              "author": {
+                "type": "string",
+                "example": "Mario Rossi"
+              },
+              "time": {
+                "type": "string",
+                "example": "30 minutes"
+              },
+              "difficulty": {
+                "type": "string",
+                "example": "Medium"
+              }
             }
           }
         }
       }
     },
     "parameters": {
-      "userId": {
-        "in": "path",
-        "name": "id",
-        "required": true,
-        "schema": {
-          "type": "string"
-        },
-        "description": "User ID"
-      },
       "recipeId": {
         "in": "path",
         "name": "id",
@@ -519,7 +709,8 @@
         "schema": {
           "type": "string"
         },
-        "description": "Recipe ID"
+        "description": "ID of the recipe",
+        "example": "60d0fe4f5311236168a109ca"
       }
     }
   }

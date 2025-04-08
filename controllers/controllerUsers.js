@@ -5,52 +5,42 @@ import { generateToken } from '../helpers/authentication.js';
 class controllerUsers {
 	constructor() {}
 
-	/**
-	 * @swagger
-	 * /users/register:
-	 *   post:
-	 *     summary: Register a new user
-	 *     tags: [Users]
-	 *     requestBody:
-	 *       required: true
-	 *       content:
-	 *         application/json:
-	 *           schema:
-	 *             type: object
-	 *             required:
-	 *               - name
-	 *               - email
-	 *               - password
-	 *             properties:
-	 *               name:
-	 *                 type: string
-	 *               email:
-	 *                 type: string
-	 *                 format: email
-	 *               password:
-	 *                 type: string
-	 *                 format: password
-	 *               favorites:
-	 *                 type: array
-	 *                 items:
-	 *                   type: string
-	 *     responses:
-	 *       201:
-	 *         description: User created successfully
-	 *       409:
-	 *         description: User already exists
-	 *       500:
-	 *         description: Server error
-	 */
 	async register(req, res) {
+		/*
+		#swagger.tags = ['Users']
+		#swagger.summary = 'Register a new user'
+		#swagger.requestBody = {
+			required: true,
+			content: {
+				"application/json": {
+					schema: {
+						type: "object",
+						properties: {
+							name: { type: "string", example: "john" },
+							email: { type: "string", example: "johndoe@example.com" },
+							password: { type: "string", example: "SecurePass123" }
+						},
+						required: ["email", "password"]
+					}
+				}
+			}
+		}
+		#swagger.responses[201] = {
+			description: "User registered successfully"
+		}
+		#swagger.responses[409] = {
+			description: "The user already exists"
+		}
+		#swagger.responses[500] = {
+			description: "Server error"
+		}
+		*/
 		try {
 			const { name, email, password, favorites } = req.body;
-
 			const usuarioExist = await modelUser.getOne({ email });
 			if (usuarioExist) {
 				return res.status(409).json({ error: 'The user already exists' });
 			}
-
 			const passEncrypt = await bcrypt.hash(password, 10);
 			const data = await modelUser.create({
 				name,
@@ -64,50 +54,50 @@ class controllerUsers {
 		}
 	}
 
-	/**
-	 * @swagger
-	 * /users/login:
-	 *   post:
-	 *     summary: Login an existing user
-	 *     tags: [Users]
-	 *     requestBody:
-	 *       required: true
-	 *       content:
-	 *         application/json:
-	 *           schema:
-	 *             type: object
-	 *             required:
-	 *               - email
-	 *               - password
-	 *             properties:
-	 *               email:
-	 *                 type: string
-	 *                 format: email
-	 *               password:
-	 *                 type: string
-	 *                 format: password
-	 *     responses:
-	 *       200:
-	 *         description: Login successful
-	 *       400:
-	 *         description: Invalid credentials
-	 *       500:
-	 *         description: Server error
-	 */
 	async login(req, res) {
+		/*
+		#swagger.tags = ['Users']
+		#swagger.summary = 'Login an existing user'
+		#swagger.requestBody = {
+			required: true,
+			content: {
+				"application/json": {
+					schema: {
+						type: "object",
+						properties: {
+							email: { type: "string", example: "johndoe@example.com" },
+							password: { type: "string", example: "SecurePass123" }
+						},
+						required: ["email", "password"]
+					}
+				}
+			}
+		}
+		#swagger.responses[200] = {
+			description: "Login successful",
+			content: {
+				"application/json": {
+					example: { msg: "Login Successful", token: "eyJhbGciOi..." }
+				}
+			}
+		}
+		#swagger.responses[400] = {
+			description: "Invalid credentials"
+		}
+		#swagger.responses[500] = {
+			description: "Server error"
+		}
+		*/
 		try {
 			const { email, password } = req.body;
-
 			const usuarioExist = await modelUser.getOne({ email });
 			if (!usuarioExist) {
 				return res.status(400).json({ error: 'The user does not exist' });
 			}
-
 			const valid = await bcrypt.compare(password, usuarioExist.password);
 			if (!valid) {
 				return res.status(400).json({ msg: 'Password incorrect' });
 			}
-
 			const token = generateToken(email);
 			return res.status(200).json({ msg: 'Login Successful', token });
 		} catch (e) {
@@ -115,23 +105,23 @@ class controllerUsers {
 		}
 	}
 
-	/**
-	 * @swagger
-	 * /users/profile:
-	 *   get:
-	 *     summary: Get user profile data (requires authentication)
-	 *     tags: [Users]
-	 *     security:
-	 *       - bearerAuth: []
-	 *     responses:
-	 *       200:
-	 *         description: Profile data retrieved
-	 *       404:
-	 *         description: User not found
-	 *       500:
-	 *         description: Error fetching profile
-	 */
 	async profile(req, res) {
+		/*
+		#swagger.tags = ['Users']
+		#swagger.summary = 'Get user profile data'
+		#swagger.security = [{
+			"bearerAuth": []
+		}]
+		#swagger.responses[200] = {
+			description: "User profile retrieved successfully"
+		}
+		#swagger.responses[404] = {
+			description: "User not found"
+		}
+		#swagger.responses[500] = {
+			description: "Server error"
+		}
+		*/
 		try {
 			const user = await modelUser.getOne({ email: req.emailConnected });
 			if (!user) {
@@ -143,72 +133,87 @@ class controllerUsers {
 		}
 	}
 
-	/**
-	 * @swagger
-	 * /users/profile:
-	 *   put:
-	 *     summary: Update user profile (requires authentication)
-	 *     tags: [Users]
-	 *     security:
-	 *       - bearerAuth: []
-	 *     requestBody:
-	 *       required: true
-	 *       content:
-	 *         application/json:
-	 *           schema:
-	 *             type: object
-	 *             properties:
-	 *               name:
-	 *                 type: string
-	 *               favorites:
-	 *                 type: array
-	 *                 items:
-	 *                   type: string
-	 *     responses:
-	 *       200:
-	 *         description: Profile updated
-	 *       404:
-	 *         description: User not found
-	 *       500:
-	 *         description: Error updating profile
-	 */
 	async updateProfile(req, res) {
+		/*
+		#swagger.tags = ['Users']
+		#swagger.summary = 'Update user profile'
+		#swagger.security = [{
+			"bearerAuth": []
+		}]
+		#swagger.requestBody = {
+			required: true,
+			content: {
+				"application/json": {
+					schema: {
+						type: "object",
+						properties: {
+							name: { type: "string", example: "john" },
+							email: { type: "string", example: "johndoe@example.com" },
+							password: { type: "string", example: "SecurePass123" }
+						},
+						required: ["email", "password"]
+					}
+				}
+			}
+		}
+		#swagger.responses[200] = {
+			description: "Profile updated successfully"
+		}
+		#swagger.responses[400] = {
+			description: "Invalid password format"
+		}
+		#swagger.responses[404] = {
+			description: "User not found"
+		}
+		#swagger.responses[500] = {
+			description: "Server error"
+		}
+		*/
 		try {
 			const user = await modelUser.getOne({ email: req.emailConnected });
 			if (!user) {
 				return res.status(404).json({ error: 'User not found' });
 			}
-
-			const updated = await modelUser.update(user._id, req.body);
+			let updatedData = { ...req.body };
+			if (updatedData.password) {
+				const isValidPassword =
+					updatedData.password.length >= 5 && updatedData.password.length <= 20;
+				if (!isValidPassword) {
+					return res
+						.status(400)
+						.json({ error: 'Password must be between 5 and 20 characters' });
+				}
+				updatedData.password = await bcrypt.hash(updatedData.password, 10);
+			}
+			const updated = await modelUser.update(user._id, updatedData);
 			return res.status(200).json(updated);
 		} catch (e) {
 			return res.status(500).json({ message: `Error updating profile: ${e}` });
 		}
 	}
 
-	/**
-	 * @swagger
-	 * /users/profile:
-	 *   delete:
-	 *     summary: Delete user profile (requires authentication)
-	 *     tags: [Users]
-	 *     security:
-	 *       - bearerAuth: []
-	 *     responses:
-	 *       200:
-	 *         description: User deleted successfully
-	 *       404:
-	 *         description: User not found
-	 *       500:
-	 *         description: Error deleting profile
-	 */
 	async deleteProfile(req, res) {
+		/*
+		#swagger.tags = ['Users']
+		#swagger.summary = 'Delete user profile'
+		#swagger.security = [{
+			"bearerAuth": []
+		}]
+		#swagger.responses[200] = {
+			description: "User deleted successfully"
+		}
+		#swagger.responses[404] = {
+			description: "User not found"
+		}
+		#swagger.responses[500] = {
+			description: "Server error"
+		}
+		*/
 		try {
 			const user = await modelUser.getOne({ email: req.emailConnected });
 			if (!user) {
 				return res.status(404).json({ error: 'User not found' });
 			}
-
 			const deleted = await modelUser.delete(user._id);
 			return res
 				.status(200)

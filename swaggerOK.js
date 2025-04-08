@@ -42,68 +42,45 @@ const doc = {
 			User: {
 				type: 'object',
 				properties: {
-					name: { type: 'string' },
-					email: { type: 'string' },
-					password: { type: 'string' },
+					name: { type: 'string', example: 'Jane Doe' },
+					email: { type: 'string', example: 'jane@example.com' },
+					password: { type: 'string', example: 'StrongPassword123' },
 					favorites: {
 						type: 'array',
 						items: { type: 'string' },
+						example: ['recipe123', 'recipe456'],
 					},
 				},
 				required: ['name', 'email', 'password'],
-				example: {
-					name: 'Jane Doe',
-					email: 'jane@example.com',
-					password: 'StrongPassword123',
-					favorites: ['recipe123', 'recipe456'],
+			},
+			Login: {
+				type: 'object',
+				properties: {
+					email: { type: 'string', example: 'jane@example.com' },
+					password: { type: 'string', example: 'StrongPassword123' },
 				},
+				required: ['email', 'password'],
 			},
 			Recipe: {
 				type: 'object',
 				properties: {
-					title: { type: 'string' },
-					ingredients: { type: 'string' },
-					instructions: { type: 'string' },
-					category: {
-						type: 'string',
-						enum: [
-							'Dessert',
-							'Appetizer',
-							'Main Course',
-							'Beverage',
-							'Salad',
-							'Other',
-						],
+					title: { type: 'string', example: 'Spaghetti Carbonara' },
+					ingredients: {
+						type: 'array',
+						items: { type: 'string' },
+						example: ['eggs', 'bacon', 'parmesan', 'pasta'],
 					},
-					author: { type: 'string' },
-					time: { type: 'string' },
-					difficulty: {
+					instructions: {
 						type: 'string',
-						enum: ['Easy', 'Medium', 'Hard'],
+						example: 'Boil pasta, fry bacon, mix all.',
 					},
+					prepTime: { type: 'integer', example: 15 },
+					cookTime: { type: 'integer', example: 10 },
+					userId: { type: 'string', example: 'user123' },
 				},
-				required: [
-					'title',
-					'ingredients',
-					'instructions',
-					'category',
-					'author',
-					'time',
-					'difficulty',
-				],
-				example: {
-					title: 'Spaghetti Carbonara',
-					ingredients: 'eggs, bacon, parmesan, pasta',
-					instructions:
-						'Boil pasta. Fry bacon. Mix everything with parmesan and eggs.',
-					category: 'Main Course',
-					author: 'Mario Rossi',
-					time: '30 minutes',
-					difficulty: 'Medium',
-				},
+				required: ['title', 'ingredients', 'instructions'],
 			},
 		},
-
 		parameters: {
 			recipeId: {
 				in: 'path',
