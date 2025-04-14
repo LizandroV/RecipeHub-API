@@ -14,7 +14,7 @@
 			"Olive oil"
 		],
 		"instructions": "Heat olive oil in a pan, sauté onion and garlic until soft. Add ground beef and cook until browned. Add tomatoes, tomato paste, oregano, and basil. Simmer for 30 minutes. Serve with spaghetti.",
-		"category": "Pasta",
+		"category": "67f89e5f41cf919ab5f2932e",
 		"author": "Chef John",
 		"time": "45 minutes",
 		"difficulty": "Medium"
@@ -30,7 +30,7 @@
 			"Salt and pepper to taste"
 		],
 		"instructions": "Grill or pan-fry chicken breasts until fully cooked. Slice them. In a large bowl, mix lettuce, croutons, and cheese. Toss with Caesar dressing and top with sliced chicken.",
-		"category": "Salad",
+		"category": "67f89e5f41cf919ab5f2932f",
 		"author": "Chef Sarah",
 		"time": "25 minutes",
 		"difficulty": "Easy"
@@ -48,7 +48,7 @@
 			"Rice, to serve"
 		],
 		"instructions": "Heat sesame oil in a pan, sauté ginger, then add vegetables. Stir-fry for 5-7 minutes, adding soy sauce towards the end. Serve with rice.",
-		"category": "Vegetarian",
+		"category": "67f89e5f41cf919ab5f29330",
 		"author": "Chef Lee",
 		"time": "20 minutes",
 		"difficulty": "Easy"
@@ -65,7 +65,7 @@
 			"Salsa"
 		],
 		"instructions": "Cook ground beef in a pan, season with taco seasoning. Fill taco shells with beef, then top with lettuce, tomatoes, cheese, sour cream, and salsa.",
-		"category": "Mexican",
+		"category": "67f89e5f41cf919ab5f29331",
 		"author": "Chef Maria",
 		"time": "30 minutes",
 		"difficulty": "Medium"
@@ -80,7 +80,7 @@
 			"Olive oil"
 		],
 		"instructions": "Preheat oven to 220°C. Roll out pizza dough, spread tomato sauce, top with mozzarella cheese and basil. Bake for 10-12 minutes. Drizzle with olive oil before serving.",
-		"category": "Italian",
+		"category": "67f89e5f41cf919ab5f29332",
 		"author": "Chef Luca",
 		"time": "20 minutes",
 		"difficulty": "Medium"
@@ -96,7 +96,7 @@
 			"Salt and pepper to taste"
 		],
 		"instructions": "Cook fettuccine according to package instructions. In a pan, sauté garlic, add cream and parmesan, then stir in grilled chicken. Toss with pasta.",
-		"category": "Pasta",
+		"category": "67f89e5f41cf919ab5f2932e",
 		"author": "Chef James",
 		"time": "30 minutes",
 		"difficulty": "Medium"
@@ -111,7 +111,7 @@
 			"Egg wash"
 		],
 		"instructions": "Sear beef tenderloin and coat with mustard. Sauté mushrooms and wrap the beef in mushrooms and puff pastry. Bake at 200°C for 30-35 minutes.",
-		"category": "Main Course",
+		"category": "67f89e5f41cf919ab5f29333",
 		"author": "Chef William",
 		"time": "1 hour 30 minutes",
 		"difficulty": "High"
@@ -126,7 +126,7 @@
 			"Salt and pepper to taste"
 		],
 		"instructions": "Melt butter in a pan, add garlic, then place salmon fillets in the pan. Cook for 5-6 minutes on each side. Serve with lemon slices.",
-		"category": "Seafood",
+		"category": "67f89e5f41cf919ab5f29334",
 		"author": "Chef Amy",
 		"time": "15 minutes",
 		"difficulty": "Easy"
@@ -143,7 +143,7 @@
 			"1 teaspoon baking powder"
 		],
 		"instructions": "Preheat oven to 180°C. Mix all ingredients, pour into a greased cake pan, and bake for 25-30 minutes.",
-		"category": "Dessert",
+		"category": "67f89e5f41cf919ab5f29335",
 		"author": "Chef Emma",
 		"time": "45 minutes",
 		"difficulty": "Medium"
@@ -158,7 +158,7 @@
 			"Lettuce"
 		],
 		"instructions": "Mix eggs, mayonnaise, and mustard. Spread on bread and add lettuce. Serve as a sandwich.",
-		"category": "Sandwich",
+		"category": "67f89e5f41cf919ab5f29336",
 		"author": "Chef Sam",
 		"time": "10 minutes",
 		"difficulty": "Easy"

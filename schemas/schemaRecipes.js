@@ -22,19 +22,16 @@ const recipesSchema = new mongoose.Schema(
 			minlength: [10, 'Instructions must be at least 10 characters.'],
 		},
 		category: {
-			type: String,
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Category',
 			required: [true, 'Category is required.'],
-			enum: {
-				values: [
-					'Dessert',
-					'Appetizer',
-					'Main Course',
-					'Beverage',
-					'Salad',
-					'Other',
-				],
-				message:
-					'Invalid category(Dessert, Appetizer, Main Course, Beverage, Salad, Other).',
+			validate: {
+				validator: async function (value) {
+					const Category = mongoose.model('Category');
+					const exists = await Category.exists({ _id: value });
+					return !!exists;
+				},
+				message: 'The specified category does not exist.',
 			},
 		},
 		author: {

@@ -18,7 +18,17 @@ class controllerRecipes {
 			content: {
 				"application/json": {
 					schema: {
-						$ref: "#/components/schemas/Recipe"
+						type: "object",
+						properties: {
+							title: { type: "string", example: "Spaghetti Bolognese" },
+							ingredients: { type: "string", example: "Spaghetti, minced meat, tomato sauce, onion, garlic" },
+							instructions: { type: "string", example: "Cook spaghetti. Brown meat. Add sauce. Mix and serve." },
+							category: { type: "string", example: "660ff010f25b7f9f94f42c2a" },
+							author: { type: "string", example: "John Doe" },
+							time: { type: "string", example: "45 minutes" },
+							difficulty: { type: "string", example: "Medium" }
+						},
+						required: ["title", "ingredients", "instructions", "category", "author", "time", "difficulty"]
 					}
 				}
 			}
@@ -57,7 +67,17 @@ class controllerRecipes {
 			content: {
 				"application/json": {
 					schema: {
-						$ref: "#/components/schemas/Recipe"
+						type: "object",
+						properties: {
+							title: { type: "string", example: "Spaghetti Bolognese" },
+							ingredients: { type: "string", example: "Spaghetti, minced meat, tomato sauce, onion, garlic" },
+							instructions: { type: "string", example: "Cook spaghetti. Brown meat. Add sauce. Mix and serve." },
+							category: { type: "string", example: "660ff010f25b7f9f94f42c2a" },
+							author: { type: "string", example: "John Doe" },
+							time: { type: "string", example: "45 minutes" },
+							difficulty: { type: "string", example: "Medium" }
+						},
+						required: ["title", "ingredients", "instructions", "category", "author", "time", "difficulty"]
 					}
 				}
 			}

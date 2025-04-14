@@ -316,7 +316,46 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Recipe"
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Spaghetti Bolognese"
+                  },
+                  "ingredients": {
+                    "type": "string",
+                    "example": "Spaghetti, minced meat, tomato sauce, onion, garlic"
+                  },
+                  "instructions": {
+                    "type": "string",
+                    "example": "Cook spaghetti. Brown meat. Add sauce. Mix and serve."
+                  },
+                  "category": {
+                    "type": "string",
+                    "example": "660ff010f25b7f9f94f42c2a"
+                  },
+                  "author": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "time": {
+                    "type": "string",
+                    "example": "45 minutes"
+                  },
+                  "difficulty": {
+                    "type": "string",
+                    "example": "Medium"
+                  }
+                },
+                "required": [
+                  "title",
+                  "ingredients",
+                  "instructions",
+                  "category",
+                  "author",
+                  "time",
+                  "difficulty"
+                ]
               }
             }
           }
@@ -395,7 +434,46 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Recipe"
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Spaghetti Bolognese"
+                  },
+                  "ingredients": {
+                    "type": "string",
+                    "example": "Spaghetti, minced meat, tomato sauce, onion, garlic"
+                  },
+                  "instructions": {
+                    "type": "string",
+                    "example": "Cook spaghetti. Brown meat. Add sauce. Mix and serve."
+                  },
+                  "category": {
+                    "type": "string",
+                    "example": "660ff010f25b7f9f94f42c2a"
+                  },
+                  "author": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "time": {
+                    "type": "string",
+                    "example": "45 minutes"
+                  },
+                  "difficulty": {
+                    "type": "string",
+                    "example": "Medium"
+                  }
+                },
+                "required": [
+                  "title",
+                  "ingredients",
+                  "instructions",
+                  "category",
+                  "author",
+                  "time",
+                  "difficulty"
+                ]
               }
             }
           }
@@ -434,6 +512,349 @@
           },
           "500": {
             "description": "Server error while deleting the recipe"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/categories/": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get all categories",
+        "description": "Retrieves the list of all culinary categories known to your kitchen.",
+        "responses": {
+          "200": {
+            "description": "List of all categories retrieved successfully"
+          },
+          "500": {
+            "description": "Server error while fetching categories"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Create a new category",
+        "description": "Adds a new category to the cookbook archive — a new culinary family is born.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Category created successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Server error while creating the category"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Desserts"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Sweet and sugary treats to end your meal."
+                  }
+                },
+                "required": [
+                  "name",
+                  "description"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories/{id}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get a single category by ID",
+        "description": "Fetches the noble lineage of a single category by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the category to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category retrieved successfully"
+          },
+          "500": {
+            "description": "Server error while retrieving the category"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Update a category by ID",
+        "description": "Refines a category — trims its name or rewrites its story.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the category to update"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category updated successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Server error while updating the category"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Appetizers"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Small dishes to whet the appetite."
+                  }
+                },
+                "required": [
+                  "name",
+                  "description"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Delete a category by ID",
+        "description": "Erases a category from the scrolls — use with care.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the category to delete"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Category deleted successfully (no content)"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Server error while deleting the category"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/comments/recipe/{recipeId}": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Get all comments for a recipe",
+        "description": "Retrieves all praises and critiques left by users for a specific recipe.",
+        "parameters": [
+          {
+            "name": "recipeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the recipe to fetch comments for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comments retrieved successfully"
+          },
+          "500": {
+            "description": "Server error while retrieving comments"
+          }
+        }
+      }
+    },
+    "/comments/": {
+      "post": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Create a new comment on a recipe",
+        "description": "A user pens down their thoughts on a recipe, leaving stars and words of wisdom.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "recipe": {
+                    "type": "string",
+                    "example": "64401f92d4a23108b1cd32f5"
+                  },
+                  "comment": {
+                    "type": "string",
+                    "example": "Wow, that flavor burst!"
+                  },
+                  "stared": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5,
+                    "example": 4
+                  }
+                },
+                "required": [
+                  "recipe",
+                  "comment",
+                  "stared"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comments/{id}": {
+      "delete": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Delete a comment by ID",
+        "description": "Removes a comment from the annals of culinary discourse.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the comment to delete"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Comment deleted successfully (no content)"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Server error while deleting the comment"
           }
         },
         "security": [
@@ -594,19 +1015,9 @@
                     "type": "string",
                     "example": "string"
                   },
-                  "enum": {
-                    "type": "array",
-                    "example": [
-                      "Dessert",
-                      "Appetizer",
-                      "Main Course",
-                      "Beverage",
-                      "Salad",
-                      "Other"
-                    ],
-                    "items": {
-                      "type": "string"
-                    }
+                  "description": {
+                    "type": "string",
+                    "example": "ID from Categories Collection"
                   }
                 }
               },
@@ -682,11 +1093,11 @@
               },
               "category": {
                 "type": "string",
-                "example": "Main Course"
+                "example": "6613b68f7399f5b4c59cbced"
               },
               "author": {
                 "type": "string",
-                "example": "Mario Rossi"
+                "example": "Mario Ross"
               },
               "time": {
                 "type": "string",
@@ -695,6 +1106,151 @@
               "difficulty": {
                 "type": "string",
                 "example": "Medium"
+              }
+            }
+          }
+        }
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  }
+                }
+              },
+              "description": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": {
+            "type": "array",
+            "example": [
+              "name"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example": "Soups"
+              },
+              "description": {
+                "type": "string",
+                "example": "Warm and hearty broths for all seasons."
+              }
+            }
+          }
+        }
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "user": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  }
+                }
+              },
+              "recipe": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  }
+                }
+              },
+              "comment": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  }
+                }
+              },
+              "stared": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "integer"
+                  },
+                  "minimum": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "maximum": {
+                    "type": "number",
+                    "example": 5
+                  }
+                }
+              }
+            }
+          },
+          "required": {
+            "type": "array",
+            "example": [
+              "user",
+              "recipe",
+              "comment",
+              "stared"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "type": "object",
+            "properties": {
+              "user": {
+                "type": "string",
+                "example": "67f4aed8ba92c740e7a0e6ab"
+              },
+              "recipe": {
+                "type": "string",
+                "example": "6613b68f7399f5b4c59cbced"
+              },
+              "comment": {
+                "type": "string",
+                "example": "Delicious and easy to make!"
+              },
+              "stared": {
+                "type": "number",
+                "example": 5
               }
             }
           }

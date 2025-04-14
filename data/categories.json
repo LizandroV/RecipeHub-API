@@ -1,0 +1,38 @@
+[
+	{
+		"name": "Pasta",
+		"description": "Delicias italianas con base de fideos, salsas y mucho amor."
+	},
+	{
+		"name": "Salad",
+		"description": "Preparaciones frescas y ligeras, llenas de color y sabor."
+	},
+	{
+		"name": "Vegetarian",
+		"description": "Platos llenos de vegetales, sin carne, con sabor a tierra viva."
+	},
+	{
+		"name": "Mexican",
+		"description": "Sabores intensos, picantes y alegres, directo desde México lindo."
+	},
+	{
+		"name": "Italian",
+		"description": "La cocina de la nonna: pizzas, quesos y hierbas mediterráneas."
+	},
+	{
+		"name": "Main Course",
+		"description": "El plato principal que corona la mesa y sacia el alma."
+	},
+	{
+		"name": "Seafood",
+		"description": "Del mar a tu mesa, frescura salada en cada bocado."
+	},
+	{
+		"name": "Dessert",
+		"description": "El dulce final que todos esperan, un abrazo para el paladar."
+	},
+	{
+		"name": "Sandwich",
+		"description": "Comida rápida, práctica y sabrosa entre dos panes."
+	}
+]

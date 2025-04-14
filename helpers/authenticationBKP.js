@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import jsonwebtoken from 'jsonwebtoken';
-import User from '../models/modelUsers.js';
 
 export function generateToken(email) {
 	return jsonwebtoken.sign({ email }, process.env.JWT_TOKEN_SECRET, {
@@ -8,8 +7,9 @@ export function generateToken(email) {
 	});
 }
 
-export async function validateToken(req, res, next) {
+export function validateToken(req, res, next) {
 	const token = req.header('Authorization')?.replace('Bearer ', '');
+	// console.log(token);
 
 	if (!token) {
 		return res.status(401).json({ error: 'Token Required' });
@@ -17,13 +17,9 @@ export async function validateToken(req, res, next) {
 
 	try {
 		const dataToken = jsonwebtoken.verify(token, process.env.JWT_TOKEN_SECRET);
-		const user = await User.findOne({ email: dataToken.email });
-
-		if (!user) {
-			return res.status(401).json({ error: 'User not found' });
-		}
-
-		req.user = user;
+		// console.log(dataToken.email);
+		// return res.status(200).json({ msg: 'Token Valid'})
+		req.emailConnected = dataToken.email;
 		next();
 	} catch (e) {
 		return res.status(401).json({ error: 'Token Invalid', e });
