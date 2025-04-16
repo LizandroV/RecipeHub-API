@@ -7,38 +7,38 @@ class controllerComments {
 
 	async create(req, res) {
 		/*
-			#swagger.tags = ['Comments']
-			#swagger.summary = 'Create a new comment on a recipe'
-			#swagger.security = [{ "bearerAuth": [] }]
-			#swagger.description = 'A user pens down their thoughts on a recipe, leaving stars and words of wisdom.'
-			#swagger.requestBody = {
-				required: true,
-				content: {
-					"application/json": {
-						schema: {
-							type: "object",
-							properties: {
-								recipe: { type: "string", example: "64401f92d4a23108b1cd32f5" },
-								comment: { type: "string", example: "Wow, that flavor burst!" },
-								stared: { type: "integer", minimum: 1, maximum: 5, example: 4 }
-							},
-							required: ["recipe", "comment", "stared"]
-						}
+		#swagger.tags = ['Comments']
+		#swagger.summary = 'Create a new comment on a recipe'
+		#swagger.security = [{
+			"bearerAuth": []
+		}]
+		#swagger.description = 'A user pens down their thoughts on a recipe, leaving stars and words of wisdom.'
+		#swagger.requestBody = {
+			required: true,
+			content: {
+				"application/json": {
+					schema: {
+						type: "object",
+						properties: {
+							user: { type: "string", example: "642f2b5cf9e5d4a6f13c8b21" },
+							recipe: { type: "string", example: "64401f92d4a23108b1cd32f5" },
+							comment: { type: "string", example: "Absolutely delicious! The spices were just perfect." },
+							stared: { type: "integer", minimum: 1, maximum: 5, example: 5 }
+						},
+						required: ["user", "recipe", "comment", "stared"]
 					}
 				}
 			}
+		}
+		#swagger.responses[201] = {
+			description: "Comment created successfully"
+		}
+		#swagger.responses[500] = {
+			description: "Server error while creating the comment"
+		}
 		*/
-
 		try {
-			const userId = req.user._id;
-			const { recipe, comment, stared } = req.body;
-
-			const data = await modelComments.create({
-				user: userId,
-				recipe,
-				comment,
-				stared,
-			});
+			const data = await modelComments.create(req.body);
 			res.status(201).json(data);
 		} catch (error) {
 			res.status(500).json({ message: `${error}` });

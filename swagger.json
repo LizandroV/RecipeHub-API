@@ -774,13 +774,13 @@
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Comment created successfully"
           },
           "401": {
             "description": "Unauthorized"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error while creating the comment"
           }
         },
         "security": [
@@ -795,22 +795,27 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "user": {
+                    "type": "string",
+                    "example": "642f2b5cf9e5d4a6f13c8b21"
+                  },
                   "recipe": {
                     "type": "string",
                     "example": "64401f92d4a23108b1cd32f5"
                   },
                   "comment": {
                     "type": "string",
-                    "example": "Wow, that flavor burst!"
+                    "example": "Absolutely delicious! The spices were just perfect."
                   },
                   "stared": {
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 5,
-                    "example": 4
+                    "example": 5
                   }
                 },
                 "required": [
+                  "user",
                   "recipe",
                   "comment",
                   "stared"

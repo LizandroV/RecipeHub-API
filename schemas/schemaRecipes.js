@@ -10,7 +10,7 @@ const recipesSchema = new mongoose.Schema(
 			maxlength: [20, 'Title cannot exceed 20 characters.'],
 		},
 		ingredients: {
-			type: String,
+			type: Array,
 			trim: true,
 			required: [true, 'Ingredients are required.'],
 			minlength: [2, 'Ingredients must be at least 2 characters.'],

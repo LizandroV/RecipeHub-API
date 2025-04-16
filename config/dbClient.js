@@ -6,11 +6,13 @@ class dbClient {
 		this.connectDB();
 	}
 
-	async connectDB() {
+	async connectDB(uri) {
 		try {
 			const dbName = 'recipeHUB';
-			const queryString = `mongodb+srv://${process.env.USER_DB}:${process.env.PASS_DB}@${process.env.SERVER_DB}/${dbName}?retryWrites=true&w=majority`;
-			await mongoose.connect(queryString);
+			const connectionString =
+				uri ||
+				`mongodb+srv://${process.env.USER_DB}:${process.env.PASS_DB}@${process.env.SERVER_DB}/${dbName}?retryWrites=true&w=majority`;
+			await mongoose.connect(connectionString);
 			console.log(`Connected to the database ${dbName}`);
 		} catch (error) {
 			console.error(`Error connecting to the database: ${error}`);
